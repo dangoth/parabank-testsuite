@@ -37,7 +37,9 @@ public class LogInPageTest extends BaseTest {
     @BeforeEach
     void defaultBrowser() {
         driver = new ChromeDriver();
+        driver.manage().window().maximize();
     }
+
 
     @AfterEach
     void tearDown() {
@@ -63,6 +65,14 @@ public class LogInPageTest extends BaseTest {
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@value='Find My Login Info']")));
         resetPage.findLoginInfo(firstName, lastName, address, city, state, zipCode, ssn);
 
+    }
+
+    @Test
+    public HomePage performLogin(String userName, String password) {
+        driver.navigate().to(baseUrl);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@type='submit']")));
+        HomePage homePage = performLogin(userName, password);
+        return homePage;
     }
 
 
