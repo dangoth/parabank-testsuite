@@ -22,8 +22,7 @@ public class LogInPage extends BasePage {
     @FindBy(xpath = "//a[text() = 'Forgot login info?']")
     private WebElement link_forgotPassword;
 
-    public LogInPage(WebDriver driver) {
-        this.driver = driver;
+    public LogInPage() {
         PageFactory.initElements(driver, this);
     }
 

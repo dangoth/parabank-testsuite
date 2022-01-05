@@ -25,29 +25,24 @@ public class HomePage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    public OpenNewAccountPage clickOpenNewAccount() {
+    public void clickOpenNewAccount() {
         link_openNewAccount.click();
-        return new OpenNewAccountPage();
     }
 
-    public AccountOverviewPage clickAccountsOverview() {
+    public void clickAccountsOverview() {
         link_accountsOverview.click();
-        return new AccountOverviewPage();
     }
 
-    public TransferFundsPage clickTransferFunds() {
+    public void clickTransferFunds() {
         link_transferFunds.click();
-        return new TransferFundsPage();
     }
 
-    public RequestLoanPage clickRequestLoan() {
+    public void clickRequestLoan() {
         link_requestLoan.click();
-        return new RequestLoanPage();
     }
 
-    public LogInPage clickLogout() {
+    public void clickLogout() {
         link_logOut.click();
-        return new LogInPage(driver);
     }
 
 }

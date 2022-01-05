@@ -1,15 +1,9 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import pages.AccountOverviewPage;
-import pages.HomePage;
-import pages.LogInPage;
-import pages.RequestLoanPage;
+import pages.*;
 
 public class RequestLoanPageTest extends BaseTest {
 
@@ -24,7 +18,8 @@ public class RequestLoanPageTest extends BaseTest {
         driver.manage().window().maximize();
         String userName = "DanB";
         String password = "password987";
-        new LogInPage(driver).performLogin(userName, password);
+        driver.navigate().to(baseUrl);
+        new LogInPage().performLogin(userName, password);
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[text() = 'Request Loan']")));
     }
 
@@ -40,6 +35,7 @@ public class RequestLoanPageTest extends BaseTest {
         String account = "12345";
         new HomePage().clickRequestLoan();
         new RequestLoanPage().requestLoan(amount, downPayment, account);
+        Assertions.assertEquals("Wealth Securities Dynamic Loans (WSDL)", new RequestLoanResultsPage().getLoanProvider());
 
     }
 

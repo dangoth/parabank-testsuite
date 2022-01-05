@@ -25,12 +25,13 @@ public class RequestLoanPage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    public void requestLoan(String amount, String downPayment, String account) {
+    public RequestLoanResultsPage requestLoan(String amount, String downPayment, String account) {
         textbox_loanAmount.sendKeys(amount);
         textbox_downPayment.sendKeys(downPayment);
         select = new Select(select_fromAccount);
         select.selectByVisibleText(account);
         button_apply.click();
+        return new RequestLoanResultsPage();
     }
 
 }

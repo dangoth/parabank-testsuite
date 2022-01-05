@@ -15,9 +15,6 @@ import pages.RegisterPage;
 
 public class LogInPageTest extends BaseTest {
 
-    private LogInPage logInPage;
-    private RegisterPage registerPage;
-
     String firstName = "Dan";
     String lastName = "Bough";
     String address = "23 Cincinatti Rd.";
@@ -38,6 +35,10 @@ public class LogInPageTest extends BaseTest {
     void defaultBrowser() {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
+        String userName = "DanB";
+        String password = "password987";
+        driver.navigate().to(baseUrl);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@value='Register']")));
     }
 
 
@@ -49,30 +50,23 @@ public class LogInPageTest extends BaseTest {
     @Test
     public void registerNewUser(String firstName, String lastName, String address, String city, String state,
                                 String zipCode, String ssn, String phoneNumber, String userName, String password) {
-        driver.navigate().to(baseUrl);
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@value='Register']")));
-        logInPage.selectRegister();
+        new LogInPage().selectRegister();
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[text() = 'Register']")));
-        registerPage.registerNewUser(firstName, lastName, address, city, state, zipCode, ssn, phoneNumber, userName, password, password);
+        new RegisterPage().registerNewUser(firstName, lastName, address, city, state, zipCode, ssn, phoneNumber, userName, password, password);
     }
 
     @Test
     public void recoverPassword(String firstName, String lastName, String address, String city, String state,
                                 String zipCode, String ssn) {
-        driver.navigate().to(baseUrl);
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@value='Register']")));
-        PasswordResetPage resetPage = logInPage.selectForgotPassword();
+        new LogInPage().selectForgotPassword();
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@value='Find My Login Info']")));
-        resetPage.findLoginInfo(firstName, lastName, address, city, state, zipCode, ssn);
-
+        new PasswordResetPage().findLoginInfo(firstName, lastName, address, city, state, zipCode, ssn);
     }
 
     @Test
-    public HomePage performLogin(String userName, String password) {
-        driver.navigate().to(baseUrl);
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@type='submit']")));
-        HomePage homePage = performLogin(userName, password);
-        return homePage;
+    public void performLogin(String userName, String password) {
+        new LogInPage().performLogin(userName, password);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[text() = 'Log Out']")));
     }
 
 
