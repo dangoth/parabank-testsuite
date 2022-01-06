@@ -1,10 +1,11 @@
 package pages;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class PasswordResetPage extends BasePage {
+public class PasswordResetPage {
 
     @FindBy(id = "firstName")
     private WebElement textbox_firstName;
@@ -30,7 +31,7 @@ public class PasswordResetPage extends BasePage {
     @FindBy(xpath = "//input[@value='Find My Login Info']")
     private WebElement button_validate;
 
-    public PasswordResetPage() {
+    public PasswordResetPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
     }
 
@@ -46,4 +47,5 @@ public class PasswordResetPage extends BasePage {
         button_validate.click();
 
     }
+
 }

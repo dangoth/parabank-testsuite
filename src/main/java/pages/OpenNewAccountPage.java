@@ -1,11 +1,12 @@
 package pages;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
-public class OpenNewAccountPage extends BasePage {
+public class OpenNewAccountPage {
 
     @FindBy(css = "select#type")
     private WebElement select_AccountType;
@@ -18,7 +19,7 @@ public class OpenNewAccountPage extends BasePage {
 
     private Select select;
 
-    public OpenNewAccountPage() {
+    public OpenNewAccountPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
     }
 

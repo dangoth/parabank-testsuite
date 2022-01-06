@@ -1,11 +1,12 @@
 package pages;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
-public class RequestLoanPage extends BasePage {
+public class RequestLoanPage {
 
     @FindBy(xpath = "//input[@id = 'amount']")
     private WebElement textbox_loanAmount;
@@ -21,17 +22,16 @@ public class RequestLoanPage extends BasePage {
 
     private Select select;
 
-    public RequestLoanPage() {
+    public RequestLoanPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
     }
 
-    public RequestLoanResultsPage requestLoan(String amount, String downPayment, String account) {
+    public void requestLoan(String amount, String downPayment, String account) {
         textbox_loanAmount.sendKeys(amount);
         textbox_downPayment.sendKeys(downPayment);
         select = new Select(select_fromAccount);
         select.selectByVisibleText(account);
         button_apply.click();
-        return new RequestLoanResultsPage();
     }
 
 }

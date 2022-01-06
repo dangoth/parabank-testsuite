@@ -1,12 +1,13 @@
 package pages;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.HashMap;
 
-public class AccountOverviewPage extends BasePage {
+public class AccountOverviewPage {
 
     @FindBy(xpath = "//table[@id='accountTable']")
     private WebElement table_accounts;
@@ -15,7 +16,7 @@ public class AccountOverviewPage extends BasePage {
     // todo implement account to hashmap parsing, total checking
 
 
-    public AccountOverviewPage() {
+    public AccountOverviewPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
     }
 

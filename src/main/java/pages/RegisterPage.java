@@ -1,10 +1,11 @@
 package pages;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class RegisterPage extends BasePage {
+public class RegisterPage {
 
     @FindBy(id = "customer.firstName")
     private WebElement textbox_firstName;
@@ -42,7 +43,7 @@ public class RegisterPage extends BasePage {
     @FindBy(xpath = "//input[@value='Register']")
     private WebElement button_register;
 
-    public RegisterPage() {
+    public RegisterPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
     }
 
@@ -62,4 +63,5 @@ public class RegisterPage extends BasePage {
         textbox_repeatPassword.sendKeys(repeatpassword);
         button_register.click();
     }
+
 }
