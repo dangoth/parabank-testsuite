@@ -19,7 +19,6 @@ public class RequestLoanPageTest extends BaseTest {
 
     @BeforeEach
     void defaultBrowser() {
-        driver = new ChromeDriver();
         driver.manage().window().maximize();
         String userName = "DanB";
         String password = "password987";
@@ -34,14 +33,15 @@ public class RequestLoanPageTest extends BaseTest {
     }
 
     @Test
-    public void requestNewLoan() {
+    public void requestNewLoan() throws InterruptedException {
         String amount = "10000";
         String downPayment = "1000";
-        String account = "12345";
+        String account = "20559";
         new HomePage(driver).clickRequestLoan();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@value = 'Apply Now']")));
         new RequestLoanPage(driver).requestLoan(amount, downPayment, account);
+        Thread.sleep(1000);
         Assertions.assertEquals("Wealth Securities Dynamic Loans (WSDL)", new RequestLoanResultsPage(driver).getLoanProvider());
-
     }
 
 }

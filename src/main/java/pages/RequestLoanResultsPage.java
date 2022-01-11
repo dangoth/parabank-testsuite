@@ -7,10 +7,11 @@ import org.openqa.selenium.support.PageFactory;
 
 public class RequestLoanResultsPage {
 
-    @FindBy(id="loanStatus")
+    @FindBy(xpath="//div[@id='rightPanel']/td[@id='loanStatus']")
     private WebElement loanStatus;
 
-    @FindBy(id = "loanProviderName")
+    //@FindBy(xpath="//div[@id='rightPanel']")
+    @FindBy(xpath="//div[@id='rightPanel']//td[@id='loanProviderName']")
     private WebElement loanProvider;
 
     public RequestLoanResultsPage(WebDriver driver) {
