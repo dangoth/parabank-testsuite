@@ -31,7 +31,7 @@ public class LogInPageTest extends BaseTest {
     }
 
     @Test
-    public void registerNewUser() {
+    public void registerNewUser() throws InterruptedException {
         String firstName = "Dan";
         String lastName = "Bough";
         String address = "23 Cincinatti Rd.";
@@ -45,8 +45,15 @@ public class LogInPageTest extends BaseTest {
         new LogInPage(driver).selectRegister();
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[text() = 'Register']")));
         new RegisterPage(driver).registerNewUser(firstName, lastName, address, city, state, zipCode, ssn, phoneNumber, userName, password, password);
+        Thread.sleep(1000);
+        // first registration
+        WebElement registrationResult = driver.findElement(By.xpath("//div[@id = 'rightPanel']/p"));
+        Assertions.assertEquals("Your account was created successfully. You are now logged in.", registrationResult.getText());
+
+        /* after registering successfully
         WebElement registerMessage = driver.findElement(By.id("customer.username.errors"));
         Assertions.assertEquals("This username already exists.", registerMessage.getText());
+         */
     }
 
     @Test

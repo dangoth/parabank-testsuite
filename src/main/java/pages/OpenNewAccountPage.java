@@ -23,7 +23,8 @@ public class OpenNewAccountPage {
         PageFactory.initElements(driver, this);
     }
 
-    public void openNewAccount(String accountType, String accountNumber) {
+    public void openNewAccount(String accountType, String accountNumber) throws InterruptedException {
+        Thread.sleep(1000);
         select = new Select(select_AccountType);
         select.selectByVisibleText(accountType);
         select = new Select(select_ExistingAccount);
