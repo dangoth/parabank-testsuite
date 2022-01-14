@@ -22,6 +22,9 @@ public class HomePage {
     @FindBy(xpath = "//a[text() = 'Log Out']")
     private WebElement link_logOut;
 
+    @FindBy(xpath = "//a[text() = 'Bill Pay']")
+    private WebElement link_billPay;
+
     public HomePage(WebDriver driver) {
         PageFactory.initElements(driver, this);
     }
@@ -44,6 +47,10 @@ public class HomePage {
 
     public void clickLogout() {
         link_logOut.click();
+    }
+
+    public void clickBillPay() {
+        link_billPay.click();
     }
 
 }

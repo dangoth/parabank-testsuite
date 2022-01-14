@@ -42,4 +42,17 @@ public class OpenNewAccountTest extends BaseTest {
 
     }
 
+    @Test
+    void openSavingsAccount() throws InterruptedException {
+        String accountType = "SAVINGS";
+        String accountNumber = "19116";
+        new HomePage(driver).clickOpenNewAccount();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@type = 'submit']")));
+        new OpenNewAccountPage(driver).openNewAccount(accountType, accountNumber);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@id = 'newAccountId']")));
+        WebElement openAccountResult = driver.findElement(By.xpath("//div[@id = 'rightPanel']/div/div/p"));
+        Assertions.assertEquals("Congratulations, your account is now open.", openAccountResult.getText());
+
+    }
+
 }

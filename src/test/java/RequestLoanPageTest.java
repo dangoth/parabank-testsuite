@@ -33,13 +33,12 @@ public class RequestLoanPageTest extends BaseTest {
     }
 
     @Test
-    public void requestNewLoan() throws InterruptedException {
+    public void request10000LoanWith1000DownPayment() throws InterruptedException {
         String amount = "10000";
         String downPayment = "1000";
-        String account = "20559";
         new HomePage(driver).clickRequestLoan();
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@value = 'Apply Now']")));
-        new RequestLoanPage(driver).requestLoan(amount, downPayment, account);
+        new RequestLoanPage(driver).requestLoan(amount, downPayment);
         Thread.sleep(1000);
         Assertions.assertEquals("Wealth Securities Dynamic Loans (WSDL)", new RequestLoanResultsPage(driver).getLoanProvider());
     }
