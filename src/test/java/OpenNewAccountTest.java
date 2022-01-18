@@ -7,6 +7,9 @@ import pages.HomePage;
 import pages.LogInPage;
 import pages.OpenNewAccountPage;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class OpenNewAccountTest extends BaseTest {
 
     @BeforeAll
@@ -16,6 +19,7 @@ public class OpenNewAccountTest extends BaseTest {
 
     @BeforeEach
     void defaultBrowser() {
+        System.out.println("Default browser beforeall");
         driver.manage().window().maximize();
         String userName = "DanB";
         String password = "password987";
@@ -31,8 +35,10 @@ public class OpenNewAccountTest extends BaseTest {
 
     @Test
     void openCheckingAccount() throws InterruptedException {
+        new HomePage(driver).clickAccountsOverview();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//table[@id='accountTable']/tbody/tr/td/a")));
+        String accountNumber = driver.findElement(By.xpath(String.format("//table[@id='accountTable']/tbody/tr[1]/td/a"))).getText();
         String accountType = "CHECKING";
-        String accountNumber = "19116";
         new HomePage(driver).clickOpenNewAccount();
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@type = 'submit']")));
         new OpenNewAccountPage(driver).openNewAccount(accountType, accountNumber);
@@ -44,8 +50,10 @@ public class OpenNewAccountTest extends BaseTest {
 
     @Test
     void openSavingsAccount() throws InterruptedException {
+        new HomePage(driver).clickAccountsOverview();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//table[@id='accountTable']/tbody/tr/td/a")));
+        String accountNumber = driver.findElement(By.xpath(String.format("//table[@id='accountTable']/tbody/tr[1]/td/a"))).getText();
         String accountType = "SAVINGS";
-        String accountNumber = "19116";
         new HomePage(driver).clickOpenNewAccount();
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@type = 'submit']")));
         new OpenNewAccountPage(driver).openNewAccount(accountType, accountNumber);
@@ -54,5 +62,4 @@ public class OpenNewAccountTest extends BaseTest {
         Assertions.assertEquals("Congratulations, your account is now open.", openAccountResult.getText());
 
     }
-
 }
